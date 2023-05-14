@@ -12,8 +12,12 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) =>{
-    res.json(findAndReplace.ReplaceString("I'm boring", "boring", "awesome and just executed c++ code IN FUCKING NODEJS IM A GENUINE FUCKING GOD"));
+app.get("/", (req, res) => {
+    res.sendFile("web/index.html");
+});
+
+app.get("/findAndReplace", (req, res) =>{
+    res.json(findAndReplace.ReplaceString(req.query.input, req.query.find, req.query.replace));
 });
 
 app.listen(process.env.PORT || 2023, () => {
